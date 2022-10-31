@@ -1,5 +1,7 @@
+#! /usr/bin/env node
+const fs = require('fs');
+const path = require('path');
 const chalk = require('chalk');
-const process = require('process');
 const { mdLinks } = require('./index.js');
 const { statsMDFiles, totalStatsValidate } = require('./utilities.js');
 
@@ -14,7 +16,7 @@ function cli(mdPath, argv) {
         (mdLinks(mdPath, { validate: true }).then((ans) => {
             console.log(totalStatsValidate(ans))
         })).catch(reject => {
-            console.log(chalk.red(reject));
+            console.log(chalk.red(reject, 'No es un argumento válido'));
         })
     } else if (argv.includes('--validate')) {
         (mdLinks(mdPath, { validate: true }).then((ans) => {
@@ -28,15 +30,15 @@ function cli(mdPath, argv) {
         })).catch(reject => {
             console.log(chalk.magenta(reject));
         })
-    } else if (argv.incluye('--stats')) {
+    } else if (argv.includes('--stats')) {
         (mdLinks(mdPath, { validate: true }).then((ans) => {
             console.log(statsMDFiles(ans))
         })).catch(reject => {
             console.log(chalk.blue(reject));
         })
     }
-    else if (argv !== '--stats'&& argv !== '--validate' && argv !== undefined) {
-            console.log('La opción escrita no es válida')
+    else if (argv !== '--stats' && argv !== '--validate' && argv !== undefined) {
+        console.log('La opción escrita no es válida')
     }
 
 }

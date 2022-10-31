@@ -3,11 +3,11 @@ const path = require('path');
 const fetch = require('node-fetch');
 const { pathAbsolute, getFilesMD, getInfoLinks, getRequestHTTP } = require('./utilities.js');
 const chalk = require('chalk');
-const routeRelative = 'src/testFile.md';
-const folderRelative = 'testDirectory';
+// const routeRelative = 'src/testFile.md';
+// const folderRelative = 'testDirectory';
 
 
-const mdLinks = (path, options = { validate: false }) => {
+const mdLinks = (path, options = { validate: true }) => {
   return new Promise((resolve, reject) => {
     const absolutPath = pathAbsolute(path);
     const arrayFileMDS = getFilesMD(absolutPath);
@@ -22,9 +22,9 @@ const mdLinks = (path, options = { validate: false }) => {
   })
 
 }
-mdLinks(routeRelative).then((data) => {
-  // console.log('soy yo?', data)
-  // console.table(data)
-})
+// mdLinks(path).then((data) => {
+//   console.log('soy yo?', data)
+//   // console.table(data)
+// })
 
 module.exports = { mdLinks };
