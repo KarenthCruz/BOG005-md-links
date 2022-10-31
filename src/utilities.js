@@ -84,20 +84,40 @@ function getInfoLinks(allFilesMD) {
 }
 // getInfoLinks(arrayFilesMDS).then((val) => {console.log(val)})
 
-
 // realizando la validación HTTP
-function getRequestHTTP(filePathMD) {
-    const requestHTTP = filePathMD.map((link) => {
+function getRequestHTTP(filesPathMD) {
+    const requestHTTP = filesPathMD.map((link) => {
        return fetch(link.href).then((answer) => {
-            link.status = answer.status;
-            link.txt = answer.status <= 299 ? 'Ok' : 'Fail';
-            //console.log('soy link', link)
-            return (link);
+                link.status = answer.status;
+                link.txt = answer.status <= 299 ? 'Ok' : 'Fail';
+                //console.log('soy link', link)
+                return (link);
 
         })
     })
     return Promise.all(requestHTTP)
 }
 
-module.exports = { getFilesMD, pathAbsolute, getInfoLinks, getRequestHTTP }
+// realizando estadísticas de los links
+function statsMDFiles(filesPathMD) {
+    return {
+      'Total': filesPathMD.length,
+      'Unique': new Set(filesPathMD.map((linkObject) => linkObject.href)).size
+    }
+    
+}
+// console.log(statsMDFiles(arrayFilesMDS))
+
+// realizando estadísticas y links rotos
+function totalStatsValidate(filesPathMD){
+    const broken = filesPathMD.filter((links) => links.status_response === 'fail').length;
+    return {
+      'Total': filesPathMD.length,
+      'Unique': new Set(filesPathMD.map((linkObject) => linkObject.href)).size,
+      'Broken': broken,
+    }
+}
+// console.log(totalStatsValidate(arrayFilesMDS));
+
+module.exports = { getFilesMD, pathAbsolute, getInfoLinks, getRequestHTTP, statsMDFiles, totalStatsValidate }
 
