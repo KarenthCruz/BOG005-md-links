@@ -87,7 +87,6 @@ function getInfoLinks(allFilesMD) {
 // realizando la validación HTTP
 function getRequestHTTP(filePathMD) {
     const requestHTTP = filePathMD.map((link) => {
-       return {
        return fetch(link.href).then((answer) => {
                 link.status = answer.status;
                 link.txt = answer.status <= 299 ? 'Ok' : 'Fail';
