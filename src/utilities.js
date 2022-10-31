@@ -16,6 +16,7 @@ function pathAbsolute(pathParameter) { // Convirtiendo la ruta relativa en absol
     }
     return pathForChange;
 }
+// console.log(chalk.magenta(pathAbsolute(folderRelative)));
 
 function getFilesMD(pathFileMD) { // Se lee el archivo o directorio (Directorio -> recursividad)
     const isAFile = fs.statSync(pathFileMD).isFile();
@@ -27,11 +28,12 @@ function getFilesMD(pathFileMD) { // Se lee el archivo o directorio (Directorio 
     if (isAFile && fileExtension === '.md') {
         arrayMD.push(pathObtain)
     } else if (isAFile && fileExtension !== '.md') {
+
     } else { // Leyendo directorio, comparando .md, empujando los nuevos resultados al array
         fs.readdirSync(pathFileMD).forEach(file => {
             let dirPath = path.join(pathFileMD, file);
             if (isADirectory) {
-                arrayMD = arrayMD.concat(getFilesMD(dirPath))
+                arrayMD = arrayMD.concat(getFilesMD(dirPath)) // Recursividad: función dentro de una función
             } else {
                 if (path.extname(dirPath) === '.md') {
                     arrayMD.push(dirPath)
@@ -44,6 +46,7 @@ function getFilesMD(pathFileMD) { // Se lee el archivo o directorio (Directorio 
 // console.log(getFilesMD(folderRelative))
 
 const arrayFilesMDS = getFilesMD(folderRelative);
+// Solo saca la info de readFile
 
 // Leer un archivo .md y extraer los links
 function obtainInfoLink(filePathMD) {
@@ -66,7 +69,7 @@ function obtainInfoLink(filePathMD) {
         })
     })
 }
-// obtainInfoLink(routeRelative).then((val) => {console.log(val)}) //.then dice que hacer cuando la promesa exitosa
+// obtainInfoLink(routeRelative).then((val) => { console.log(val) }) //.then dice que hacer cuando la promesa exitosa
 
 // Leer el array de archivos y extraer info links con obtainInfoLink
 function getInfoLinks(allFilesMD) {
@@ -81,28 +84,20 @@ function getInfoLinks(allFilesMD) {
 }
 // getInfoLinks(arrayFilesMDS).then((val) => {console.log(val)})
 
-// Realizando la petición HTTP, cuando la validación es true
+
+// realizando la validación HTTP
 function getRequestHTTP(filePathMD) {
-    const requestHTTP = filePathMD.map((link) => fetch(link.href).then((answer) => {
-        link.status = answer.status;
-        link.txt = answer.status <= 299 ? 'Ok' : 'Fail';
-        //console.log('soy link', link)
-        return (link);
+    const requestHTTP = filePathMD.map((link) => {
+       return fetch(link.href).then((answer) => {
+            link.status = answer.status;
+            link.txt = answer.status <= 299 ? 'Ok' : 'Fail';
+            //console.log('soy link', link)
+            return (link);
 
-
-        function getRequestHTTPLinks(allFilesMD) {
-            return new Promise((resolve, reject) => {
-
-                const arrRequestHTTP = allFilesMD.map((file) => getRequestHTTP(file));
-
-                Promise.all(arrRequestHTTP).then((value) => {
-                    resolve(value.flat());
-                });
-            });
-        }
-    }))
+        })
+    })
     return Promise.all(requestHTTP)
 }
-// getRequestHTTPLinks(arrayFilesMDS).then((val) => {console.log(val)})
 
 module.exports = { getFilesMD, pathAbsolute, getInfoLinks, getRequestHTTP }
+
