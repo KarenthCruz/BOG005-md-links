@@ -5,24 +5,23 @@ const chalk = require('chalk');
 const routeRelative = 'testDirectory';
 
 
-// function existsFile(path) {
-//   return fs.existsSync(path);
-// }
-// console.log(existsFile(path))
-
-const mdLinks = (path, options) => {
+const mdLinks = (path, options = { validate: false }) => {
   return new Promise((resolve, reject) => {
     const absolutPath = pathAbsolute(path);
     const arrayFileMDS = getFilesMD(absolutPath);
     const obtainInfoLinks = getInfoLinks(arrayFileMDS);
-    console.log(obtainInfoLinks)
-    resolve(obtainInfoLinks);
-
+    const obtainInfoLinksHTTP = getRequestHTTP(arrayFileMDS);
+    if (options.validate === false) {
+      resolve(obtainInfoLinks);
+    } else {
+      resolve(obtainInfoLinksHTTP);
+    }
   })
 
 }
-mdLinks(routeRelative).then((data)=>{
-  console.log(data)
+mdLinks(routeRelative).then((data) => {
+  console.log('soy yo!!!', data)
 })
 
-module.exports = { mdLinks }
+
+module.exports = { mdLinks };
