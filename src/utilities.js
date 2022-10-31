@@ -81,28 +81,18 @@ function getInfoLinks(allFilesMD) {
 }
 // getInfoLinks(arrayFilesMDS).then((val) => {console.log(val)})
 
-// Realizando la petición HTTP, cuando la validación es true
+// realizando la validación HTTP
 function getRequestHTTP(filePathMD) {
-    const requestHTTP = filePathMD.map((link) => fetch(link.href).then((answer) => {
-        link.status = answer.status;
-        link.txt = answer.status <= 299 ? 'Ok' : 'Fail';
-        //console.log('soy link', link)
-        return (link);
+    const requestHTTP = filePathMD.map((link) => {
+       return fetch(link.href).then((answer) => {
+            link.status = answer.status;
+            link.txt = answer.status <= 299 ? 'Ok' : 'Fail';
+            //console.log('soy link', link)
+            return (link);
 
-
-        function getRequestHTTPLinks(allFilesMD) {
-            return new Promise((resolve, reject) => {
-
-                const arrRequestHTTP = allFilesMD.map((file) => getRequestHTTP(file));
-
-                Promise.all(arrRequestHTTP).then((value) => {
-                    resolve(value.flat());
-                });
-            });
-        }
-    }))
+        })
+    })
     return Promise.all(requestHTTP)
 }
-// getRequestHTTPLinks(arrayFilesMDS).then((val) => {console.log(val)})
 
 module.exports = { getFilesMD, pathAbsolute, getInfoLinks, getRequestHTTP }
