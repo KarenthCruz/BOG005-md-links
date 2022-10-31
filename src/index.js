@@ -25,3 +25,4 @@ mdLinks(routeRelative).then((data)=>{
   console.log(data)
 })
 
+module.exports = { mdLinks }
