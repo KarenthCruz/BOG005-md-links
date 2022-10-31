@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const fetch = require('node-fetch');
 const { pathAbsolute, getFilesMD, getInfoLinks, getRequestHTTP } = require('./utilities.js');
 const chalk = require('chalk');
 const routeRelative = 'src/testFile.md';
@@ -26,3 +27,4 @@ mdLinks(routeRelative).then((data) => {
   console.table(data)
 })
 
+module.exports = { mdLinks };

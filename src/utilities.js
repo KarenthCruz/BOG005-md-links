@@ -84,6 +84,7 @@ function getInfoLinks(allFilesMD) {
 }
 // getInfoLinks(arrayFilesMDS).then((val) => {console.log(val)})
 
+
 // realizando la validación HTTP
 function getRequestHTTP(filePathMD) {
     const requestHTTP = filePathMD.map((link) => {
@@ -99,5 +100,4 @@ function getRequestHTTP(filePathMD) {
 }
 
 module.exports = { getFilesMD, pathAbsolute, getInfoLinks, getRequestHTTP }
-
 
