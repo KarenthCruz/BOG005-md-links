@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const marked = require('marked');
+const fetch = require('node-fetch');
 const routeRelative = 'src/testFile.md';
 const folderRelative = 'testDirectory';
 
@@ -72,8 +73,8 @@ function getInfoLinks(allFilesMD) {
     return new Promise((resolve, reject) => {
 
         const arrAllFilesMD = allFilesMD.map((file) => obtainInfoLink(file))
-        
-        Promise.all(arrAllFilesMD).then((value) => { 
+
+        Promise.all(arrAllFilesMD).then((value) => {
             resolve(value.flat())
         })
     })
@@ -82,45 +83,25 @@ function getInfoLinks(allFilesMD) {
 
 // Realizando la petición HTTP, cuando la validación es true
 function getRequestHTTP(filePathMD) {
-    return new Promise((resolve, reject) => {
-        const infoLink = [];
-        fs.readFile(filePathMD, 'utf-8', (err, data) => {
-            if (err) resolve(err);
-            marked.marked(data, {
-                walkTokens: (token) => {
-                    if (token.type === 'link' && token.href.includes('http')) {
-                        infoLink.push({
-                            href: token.href,
-                            text: token.text,
-                            file: filePathMD,
-                        })
-                    }
-                }
-            })
-            // usando fetch para hacer la petición HTTP
-            const requestHTTP = infoLink.map((link) => {
-                fetch(link.href).then((answer) => {
-                    link.status = answer.status;
-                    link.txt = answer.status >= 200 && resolve.status > 400 ? 'Ok' : 'Fail';
-                    console.log('soy link', link)
-                })
-            })
-        })
-        console.log('Soy infolinks', infoLink);
-    })
+    const requestHTTP = filePathMD.map((link) => fetch(link.href).then((answer) => {
+        link.status = answer.status;
+        link.txt = answer.status <= 299 ? 'Ok' : 'Fail';
+        //console.log('soy link', link)
+        return (link);
 
-}
-getRequestHTTP(routeRelative).then((val) => { console.log(val) })
 
-function getRequestHTTPLinks(allFilesMD) {
-    return new Promise((resolve, reject) => {
+        function getRequestHTTPLinks(allFilesMD) {
+            return new Promise((resolve, reject) => {
 
-        const arrRequestHTTP = allFilesMD.map((file) => getRequestHTTP(file))
+                const arrRequestHTTP = allFilesMD.map((file) => getRequestHTTP(file));
 
-        Promise.all(arrRequestHTTP).then((value) => {
-            resolve(value.flat())
-        })
-    })
+                Promise.all(arrRequestHTTP).then((value) => {
+                    resolve(value.flat());
+                });
+            });
+        }
+    }))
+    return Promise.all(requestHTTP)
 }
 // getRequestHTTPLinks(arrayFilesMDS).then((val) => {console.log(val)})
 
