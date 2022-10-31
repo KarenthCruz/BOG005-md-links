@@ -7,7 +7,7 @@ const routeRelative = 'src/testFile.md';
 const folderRelative = 'testDirectory';
 
 
-const mdLinks = (path, options = { validate: true }) => {
+const mdLinks = (path, options = { validate: false }) => {
   return new Promise((resolve, reject) => {
     const absolutPath = pathAbsolute(path);
     const arrayFileMDS = getFilesMD(absolutPath);
@@ -15,8 +15,8 @@ const mdLinks = (path, options = { validate: true }) => {
     if (options.validate === false) {
       resolve(obtainInfoLinks);
     } else {
-      getInfoLinks(arrayFileMDS).then((res) => {
-        getRequestHTTP(res).then(obj => resolve(obj))
+      getInfoLinks(arrayFileMDS).then((ans) => {
+        getRequestHTTP(ans).then(obj => resolve(obj))
       })
     }
   })
@@ -24,7 +24,7 @@ const mdLinks = (path, options = { validate: true }) => {
 }
 mdLinks(routeRelative).then((data) => {
   // console.log('soy yo?', data)
-  console.table(data)
+  // console.table(data)
 })
 
 module.exports = { mdLinks };
