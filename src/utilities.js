@@ -42,7 +42,6 @@ function getFilesMD(pathFileMD) { // Se lee el archivo o directorio (Directorio 
 }
 // console.log(getFilesMD(folderRelative))
 
-
 // Leer un archivo .md y extraer los links
 function obtainInfoLink(filePathMD) {
     return new Promise((resolve, reject) => {
