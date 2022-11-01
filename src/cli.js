@@ -16,29 +16,29 @@ function cli(mdPath, argv) {
         (mdLinks(mdPath, { validate: true }).then((ans) => {
             console.log(totalStatsValidate(ans))
         })).catch(reject => {
-            console.log(chalk.red(reject, 'No es un argumento válido'));
+            console.log(chalk.red('No es un argumento válido', reject));
         })
     } else if (argv.includes('--validate')) {
         (mdLinks(mdPath, { validate: true }).then((ans) => {
             console.log(ans)
         })).catch(reject => {
-            console.log(chalk.green(reject));
+            console.log(chalk.green('No existe el archivo o directorio', reject));
         })
     } else if (argv.length <= 3) {
         (mdLinks(mdPath, { validate: false }).then((ans) => {
             console.log(ans)
         })).catch(reject => {
-            console.log(chalk.magenta(reject));
+            console.log(chalk.magenta('No es un argumento válido', reject));
         })
     } else if (argv.includes('--stats')) {
         (mdLinks(mdPath, { validate: true }).then((ans) => {
             console.log(statsMDFiles(ans))
         })).catch(reject => {
-            console.log(chalk.blue(reject));
+            console.log(chalk.blue('No existe el archivo o directorio', reject));
         })
     }
     else if (argv !== '--stats' && argv !== '--validate' && argv !== undefined) {
-        console.log('La opción escrita no es válida')
+        console.log('La opción escrita no es válida, intenta con --validate, --stats')
     }
 
 }

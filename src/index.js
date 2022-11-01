@@ -3,8 +3,6 @@ const path = require('path');
 const fetch = require('node-fetch');
 const { pathAbsolute, getFilesMD, getInfoLinks, getRequestHTTP } = require('./utilities.js');
 const chalk = require('chalk');
-// const routeRelative = 'src/testFile.md';
-// const folderRelative = 'testDirectory';
 
 
 const mdLinks = (path, options = { validate: true }) => {
@@ -22,9 +20,5 @@ const mdLinks = (path, options = { validate: true }) => {
   })
 
 }
-// mdLinks(path).then((data) => {
-//   console.log('soy yo?', data)
-//   // console.table(data)
-// })
 
 module.exports = { mdLinks };

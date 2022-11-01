@@ -3,9 +3,6 @@ const path = require('path');
 const chalk = require('chalk');
 const marked = require('marked');
 const fetch = require('node-fetch');
-const routeRelative = 'src/testFile.md';
-const folderRelative = 'testDirectory';
-
 
 function pathAbsolute(pathParameter) { // Convirtiendo la ruta relativa en absoluta
     let pathForChange = '';
@@ -45,8 +42,6 @@ function getFilesMD(pathFileMD) { // Se lee el archivo o directorio (Directorio 
 }
 // console.log(getFilesMD(folderRelative))
 
-const arrayFilesMDS = getFilesMD(folderRelative);
-// Solo saca la info de readFile
 
 // Leer un archivo .md y extraer los links
 function obtainInfoLink(filePathMD) {
