@@ -1,48 +1,36 @@
 const dataMock = {
-    pathFile: 'testDirectory',
+    pathFile: 'src/testFile.md',
     validateFalse: [
         {
-            href: 'https://nodejs.org/es/',
+            href: 'https://es.wikipedia.org/wiki/Markdown',
+            text: 'Markdown',
+            file: '/Users/dana/Documents/Dana 2022/Laboratoria/BOG005-md-links/src/testFile.md',
+          },
+          {
+            href: 'https://no.dejs.org/',
             text: 'Node.js',
-            file: '/Users/dana/Documents/Dana 2022/Laboratoria/BOG005-md-links/testDirectory/README.md',
-        },
-        {
-            href: 'https://developers.google.com/v8/',
-            text: 'motor de JavaScript V8 de Chrome',
-            file: '/Users/dana/Documents/Dana 2022/Laboratoria/BOG005-md-links/testDirectory/README.md',
-        },
-        {
-            href: 'https://developers.guugle.com/v8/',
-            text: 'motor de JavaScript V8 de Chrome',
-            file: '/Users/dana/Documents/Dana 2022/Laboratoria/BOG005-md-links/testDirectory/README.md',
-        }
+            file: '/Users/dana/Documents/Dana 2022/Laboratoria/BOG005-md-links/src/testFile.md',
+          }
     ],
     validateTrue: [
         {
-            href: 'https://nodejs.org/es/',
+            href: 'https://es.wikipedia.org/wiki/Markdown',
+            text: 'Markdown',
+            file: '/Users/dana/Documents/Dana 2022/Laboratoria/BOG005-md-links/src/testFile.md',
+            status: 200,
+            txt: 'Ok'
+          },
+          {
+            href: 'https://no.dejs.org/',
             text: 'Node.js',
-            file: '/Users/dana/Documents/Dana 2022/Laboratoria/BOG005-md-links/testDirectory/README.md',
-            status: 200,
-            txt: 'Ok'
-        },
-        {
-            href: 'https://developers.google.com/v8/',
-            text: 'motor de JavaScript V8 de Chrome',
-            file: '/Users/dana/Documents/Dana 2022/Laboratoria/BOG005-md-links/testDirectory/README.md',
-            status: 200,
-            txt: 'Ok'
-        },
-        {
-            href: 'https://developers.guugle.com/v8/',
-            text: 'motor de JavaScript V8 de Chrome',
-            file: '/Users/dana/Documents/Dana 2022/Laboratoria/BOG005-md-links/testDirectory/README.md',
+            file: '/Users/dana/Documents/Dana 2022/Laboratoria/BOG005-md-links/src/testFile.md',
             status: 'No hay respuesta del servidor',
-            txt: 'Fail'
-        },
+            txt: 'fail'
+          }
     ],
-        stats: { Total: 3, Unique: 3 },
-        statsAndValidate: { Total: 3, Unique: 3, Broken: 1 },
-    
+    stats: { Total: 2, Unique: 2 },
+    statsAndValidate: { Total: 2, Unique: 2, Broken: 1 },
+
 }
 
 module.exports = { dataMock };

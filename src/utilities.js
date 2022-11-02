@@ -25,7 +25,7 @@ function getFilesMD(pathFileMD) { // Se lee el archivo o directorio (Directorio 
     if (isAFile && fileExtension === '.md') {
         arrayMD.push(pathObtain)
     } else if (isAFile && fileExtension !== '.md') {
-
+        // console.log('No es un archivo markdown')
     } else { // Leyendo directorio, comparando .md, empujando los nuevos resultados al array
         fs.readdirSync(pathFileMD).forEach(file => {
             let dirPath = path.join(pathFileMD, file);
