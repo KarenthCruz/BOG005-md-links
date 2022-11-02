@@ -81,11 +81,17 @@ function getInfoLinks(allFilesMD) {
 // realizando la validación HTTP
 function getRequestHTTP(filesPathMD) {
     const requestHTTP = filesPathMD.map((link) => {
-       return fetch(link.href).then((answer) => {
-                link.status = answer.status;
-                link.txt = answer.status <= 299 ? 'Ok' : 'Fail';
-                //console.log('soy link', link)
-                return (link);
+        return fetch(link.href).then((answer) => {
+            link.status = answer.status;
+            link.txt = answer.status <= 399 ? 'Ok' : 'fail';
+            //console.log('soy link', link)
+            return (link);
+            
+        }).catch(error => {
+            link.status = 'No hay respuesta del servidor';
+            link.txt = 'fail';
+            return link;
+            // console.log(error.message);
 
         })
     })
@@ -95,20 +101,20 @@ function getRequestHTTP(filesPathMD) {
 // realizando estadísticas de los links
 function statsMDFiles(filesPathMD) {
     return {
-      'Total': filesPathMD.length,
-      'Unique': new Set(filesPathMD.map((linkObject) => linkObject.href)).size
+        'Total': filesPathMD.length,
+        'Unique': new Set(filesPathMD.map((linkObject) => linkObject.href)).size
     }
-    
+
 }
 // console.log(statsMDFiles(arrayFilesMDS))
 
 // realizando estadísticas y links rotos
-function totalStatsValidate(filesPathMD){
-    const broken = filesPathMD.filter((links) => links.status_response === 'fail').length;
+function totalStatsValidate(filesPathMD) {
+    const broken = filesPathMD.filter((links) => links.txt === 'fail').length;
     return {
-      'Total': filesPathMD.length,
-      'Unique': new Set(filesPathMD.map((linkObject) => linkObject.href)).size,
-      'Broken': broken,
+        'Total': filesPathMD.length,
+        'Unique': new Set(filesPathMD.map((linkObject) => linkObject.href)).size,
+        'Broken': broken,
     }
 }
 // console.log(totalStatsValidate(arrayFilesMDS));

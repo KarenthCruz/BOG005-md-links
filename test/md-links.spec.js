@@ -1,4 +1,5 @@
-const mdLinks = require('../');
+const { mdLinks } = require('../src/index.js');
+const { statsMDFiles } = require('../src/utilities.js');
 
 
 
