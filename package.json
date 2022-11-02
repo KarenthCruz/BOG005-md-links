@@ -32,6 +32,7 @@
     "yargs": "^17.6.0"
   },
   "devDependencies": {
-    "@types/marked": "^4.0.7"
+    "@types/marked": "^4.0.7",
+    "jest": "^29.2.2"
   }
 }
