@@ -16,7 +16,7 @@ function cli(mdPath, argv) {
         (mdLinks(mdPath, { validate: true }).then((ans) => {
             console.log(totalStatsValidate(ans))
         })).catch(reject => {
-            console.log(chalk.red('No es un argumento válido', reject));
+            console.log(chalk.red('No es una ruta válida', reject));
         })
     } else if (argv.includes('--validate')) {
         (mdLinks(mdPath, { validate: true }).then((ans) => {

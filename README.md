@@ -479,7 +479,7 @@ links podría plantearse de las siguientes maneras (todas válidas):
 * Usando un _custom renderer_ de [marked](https://github.com/markedjs/marked)
   (`new marked.Renderer()`).
 
-No dudes en consultar a tus compañeras, coaches y/o el [foro de la comunidad](http://community.laboratoria.la/c/js)
+No dudes en consultar a tus compañeras, coaches y/o el
 si tienes dudas existenciales con respecto a estas decisiones. No existe una
 "única" manera correcta :wink:
 
@@ -500,7 +500,7 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 * [¿Qué es Nodejs? Javascript en el Servidor - Fazt en YouTube](https://www.youtube.com/watch?v=WgSc1nv_4Gw)
 * [¿Simplemente qué es Node.js? - IBM Developer Works, 2011](https://www.ibm.com/developerworks/ssa/opensource/library/os-nodejs/index.html)
 * [Node.js y npm](https://www.genbeta.com/desarrollo/node-js-y-npm)
-* [Módulos, librerías, paquetes, frameworks... ¿cuál es la diferencia?](http://community.laboratoria.la/t/modulos-librerias-paquetes-frameworks-cual-es-la-diferencia/175)
+* [Módulos, librerías, paquetes, frameworks... ¿cuál es la diferencia?]
 * [Asíncronía en js](https://carlosazaustre.es/manejando-la-asincronia-en-javascript)
 * [NPM](https://docs.npmjs.com/getting-started/what-is-npm)
 * [Publicar packpage](https://docs.npmjs.com/getting-started/publishing-npm-packages)
