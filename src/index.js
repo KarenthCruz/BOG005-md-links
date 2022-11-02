@@ -5,7 +5,7 @@ const { pathAbsolute, getFilesMD, getInfoLinks, getRequestHTTP } = require('./ut
 const chalk = require('chalk');
 
 
-const mdLinks = (path, options = { validate: true }) => {
+const mdLinks = (path, options = { validate: false }) => {
   return new Promise((resolve, reject) => {
     const absolutPath = pathAbsolute(path);
     const arrayFileMDS = getFilesMD(absolutPath);
