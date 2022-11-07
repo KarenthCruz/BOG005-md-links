@@ -42,7 +42,7 @@ describe('mdLinks', () => {
   it('Cuando el archivo no es markdown (.md)', (done) => {
     mdLinks('testBadDirectory', { validate: false })
       .then((ans) => {
-        expect(ans).toEqual([]);
+        expect(ans).toEqual('No es un archivo markdown.md');
         done()
       })
   });

@@ -11,8 +11,14 @@ const mdLinks = (path, options = { validate: false }) => {
     const arrayFileMDS = getFilesMD(absolutPath);
     const obtainInfoLinks = getInfoLinks(arrayFileMDS);
     if (options.validate === false) {
+      if (arrayFileMDS.length === 0) {
+        resolve('No es un archivo markdown.md')
+      }
       resolve(obtainInfoLinks);
     } else {
+      if (arrayFileMDS.length === 0) {
+        resolve('No es un archivo markdown.md')
+      }
       getInfoLinks(arrayFileMDS).then((ans) => {
         getRequestHTTP(ans).then(obj => resolve(obj))
       })
