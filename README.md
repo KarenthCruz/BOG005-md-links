@@ -155,5 +155,12 @@ md-links <path-to-file> [options]
 
 Para la ejecución del proyecto se tuvo en cuenta el siguiente diagrama de flujo:
 ```sh
-![Diagrama API](../BOG005-md-links/src/img/flujo-API.jpg)
-![Diagrama CLI](../BOG005-md-links/src/img/flujo-CLI.jpg)
+![Diagrama API](./src/img/flujo-API.jpg)
+
+![Diagrama CLI](./src/img/flujo-CLI.jpg)
+```
+
+
+
+
+
