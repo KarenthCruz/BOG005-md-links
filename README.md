@@ -7,7 +7,7 @@
 * [3. Documentación](#3-documentación)
 * [3.1. API](#3.1-API)
 * [3.2. CLI](#3.2-CLI)
-* [4. Guía de Uso e Instalación ](#6-Guía-de-Uso-e-Instalación)
+* [4. Guía de uso e instalación ](#6-Guía-de-Uso-e-Instalación)
 * [5. Diagrama de flujo](#7-diagrama-de-flujo)
 
 ***
