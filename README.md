@@ -129,7 +129,7 @@ Unique: 3
 Broken: 1
 ```
 
-### 4. Guía de Uso e Instalación 
+### 4. Guía de uso e instalación 
 
 Para usar el modulo, lo puedes instalar con el siguiente comando desde tu terminal: 
 ```sh
@@ -151,9 +151,9 @@ para ejecutarlo desde el CLI:
 md-links <path-to-file> [options]
 ```
 
-### 5. Diagrama de flujon (Anexos)
+### 5. Diagrama de flujo (Anexos)
 
 Para la ejecución del proyecto se tuvo en cuenta el siguiente diagrama de flujo:
 ```sh
-![Diagrama 1](../BOG005-md-links/img/flujo-API.jpg)
-![Diagrama 2](../BOG005-md-links/img/flujo-CLI.jpg)
+![Diagrama API](../BOG005-md-links/src/img/flujo-API.jpg)
+![Diagrama CLI](../BOG005-md-links/src/img/flujo-CLI.jpg)
